@@ -20,7 +20,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 
-max_iterations = 4
+max_iterations = 10
 last_response = None
 iteration = 0
 iteration_response = []
