@@ -97,7 +97,7 @@ def show_reasoning(steps):  # No type hinting
 
 @mcp.tool()
 def verify(expression: str, expected: str) -> TextContent:
-    """Verify if a calculation is correct uses the eval function. Can handle both single values and lists."""
+    """Verify if a calculation is correct uses the python eval function. Can handle both single values and lists."""
     console.print("[blue]FUNCTION CALL:[/blue] verify()")
     console.print(f"[blue]Verifying:[/blue] {expression} = {expected}")
     try:

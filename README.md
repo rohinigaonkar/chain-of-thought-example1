@@ -179,17 +179,19 @@ Example Output:
 
 ```
 % uv run mcp-client.py "Add every multiple of 5 from 1 to 20, return the square root of that sum"
+
 Starting main execution...
 Establishing connection to MCP server...
 Connection established, creating session...
 Session created, initializing...
+
 Requesting tool list...
-[04/20/25 12:32:04] INFO     Processing request of type ListToolsRequest                                                  server.py:534
 Successfully retrieved 20 tools
 Creating system prompt...
+
 Number of tools: 20
 1. show_reasoning(steps: string) - Shows the LLM's step-by-step reasoning thought process. RUN THIS ONLY ONCE IN FIRST STEP.
-2. verify(expression: string, expected: string) - Verify if a calculation is correct. Can handle both single values and lists.
+2. verify(expression: string, expected: string) - Verify if a calculation is correct uses the python eval function. Can handle both single values and lists.
 3. add(a: integer, b: integer) - Add two numbers
 4. add_list(l: array) - Add all numbers in a list
 5. subtract(a: integer, b: integer) - Subtract two numbers
