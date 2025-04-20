@@ -20,7 +20,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 
-max_iterations = 10
+max_iterations = 5
 last_response = None
 iteration = 0
 iteration_response = []
@@ -155,6 +155,15 @@ async def main():
                 - If user asks to verify the result, you must call the verify tool with the result as the parameter.
                 - For the show_reasoning tool, in the last step of the reasoning, tag the appropriate reasoning type in one word like arithmetic, logic, etc.
 
+                Sample conversation:
+                User: Calculate sum of first two prime numbers
+                Assistant: {{"function_name": "show_reasoning", "parameters": ["First, I need to identify the first two prime numbers. The first two prime numbers are 2 and 3. Then, I need to add these two numbers. This is an arithmetic problem."]}}
+                User: In the 1 iteration you called show_reasoning with {{\'steps\': \'First, I need to identify the first two prime numbers. The first two prime numbers are 2 and 3. Then, I need to add these two numbers. This is an arithmetic problem.\'}} parameters, and the function returned [{{"steps": "First, I need to identify the first two prime numbers. The first two prime numbers are 2 and 3. Then, I need to add these two numbers. This is an arithmetic problem."}}]. Now proceed to do the calculations.
+                Assistant: {{"function_name": "add", "parameters": [2, 3] }}
+                User: In the 2 iteration you called add with {{'a': 2, 'b': 3}} parameters, and the function returned [5]. Let's verify the result.
+                Assistant: {{"function_name": "verify", "parameters": ["2 + 3", "5"]}}
+                User: In the 3 iteration you called verify with {{'expression': '2 + 3', 'expected': '5'}} parameters, and the function returned [True]. Let's verify the result."
+                Assistant: {{"function_name": "FINAL_ANSWER", "parameters": [5]}}
                 """
 
                 #query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. """
